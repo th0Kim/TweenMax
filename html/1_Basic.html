@@ -14,25 +14,34 @@
 		<article class="moon to">
 			<img src="/images/img_moon.jpg" alt="moon"/>
 		</article>
+
+		<hr/>
+
+		<h2>.from</h2>
+		<article class="moon from">
+			<img src="/images/img_moon.jpg" alt="moon"/>
+		</article>
+
+		<hr/>
+
+		<h2>.fromTo</h2>
+		<article class="moon fromTo">
+			<img src="/images/img_moon.jpg" alt="moon"/>
+		</article>
 	</section>
-	<div>
-	</div> 
 	
 
-    <hr/>
 
     <script src="/js/TweenMax.min.js"></script>
     <script>
-			TweenMax.to(".to img", 2, {
-				position: "relative",
-				left: 300,
-				boxShadow:"10px 10px 20px #888",
-				borderRadius:20
-			});
-		 $(function(){
-			
-		 })
-
+		TweenMax.to(".to img", 2, {
+			left: "20%",
+			boxShadow:"20px 20px 10px rgba(0,0,0,0.4)"
+		});
+		TweenMax.from(".from img", 6, {
+			left: "30%",
+			boxShadow:"20px 20px 10px rgba(0,0,0,0.4)"
+		});
     </script>
 </body>
 </html>
