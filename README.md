@@ -1,1 +1,2 @@
-# TweenMax
+2019.11.19 
+    - RESTART TWEENMAX STUDY.
