@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TWEENMAX - BASIC</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+   <h1>BASIC</h1>
+   <section>
+		<h2>.to</h2>
+		<article class="moon to">
+			<img src="/images/img_moon.jpg" alt="moon"/>
+		</article>
+	</section>
+	<div>
+	</div> 
+	
+
+    <hr/>
+
+    <script src="/js/TweenMax.min.js"></script>
+    <script>
+			TweenMax.to(".to img", 2, {
+				position: "relative",
+				left: 300,
+				boxShadow:"10px 10px 20px #888",
+				borderRadius:20
+			});
+		 $(function(){
+			
+		 })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+@import url('/css/base.css');
+hr {margin: 50px 0; border-top: 1px dashed rgb(188, 188, 219);}
+section {margin-left: 20px;}
+img {display: inline-block; }

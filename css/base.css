@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/* reset css */
+html,body {width:100%;height:100%;font-family: Arial, Helvetica, sans-serif;font-size:13px;line-height:1.5;color:#333333;-webkit-text-size-adjust:none;}
+body,div,form,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,em,p,span,textarea,pre,label,fieldset,th,td,button,a,input,select,hr, figure {margin:0;padding:0;outline:0;border:0;background:transparent;box-sizing:border-box;}
+h1, h2, h3, h4, h5, h6 {margin:0;font-weight:normal;}
+ul, ol, dl, li {list-style:none;}
+fieldset, img, button {border:0;}
+table {width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;}
+caption, legend {overflow:hidden; clip:rect(1px, 1px, 1px, 1px); position:absolute; width:1px; height:1px;}
+a {color:inherit; text-decoration:none}
+button {margin:0;padding:0;outline:0;border:0;border-radius:0;background:none;cursor:pointer;}
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section {display:block;}
+input, textarea, select {font-size:100%; line-height:normal; margin:0; padding:0; vertical-align:middle;
+ background:transparent;border:none;border-radius:0;-webkit-border-radius:0;-moz-appearance:none;-webkit-appearance:none;appearance:none;outline:none;} /* 모바일 한정 */
+textarea {resize:none;}
+input[type="text"], input[type="password"], input[type="email"], input[type="search"], input[type="image"], input[type="tel"], input[type="number"], textarea{-webkit-appearance:none; -webkit-border-radius:0}
+input[type=text]::-ms-clear,input[type=password]::-ms-clear,input[type=text]::-ms-reveal,input[type=password]::-ms-reveal {display:none;}
+select {outline:none;border:none;border-radius:0;-webkit-border-radius:0;appearance:none;-webkit-appearance:none;-moz-appearance:none;}
+select::-ms-expand {display:none;}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance:none;
+}
+.blind {position:absolute;top:0;left:0;overflow:hidden;width:0;height:0;font-size:0;line-height:0;}
+.clfix:after {content:"";display:block;clear:both;visibility:hidden;height:0;}
