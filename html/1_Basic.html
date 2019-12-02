@@ -5,34 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TWEENMAX - BASIC</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="\TweenMax\css\style.css">
 </head>
 <body>
    <h1>BASIC</h1>
    <section>
 		<h2>.to</h2>
 		<article class="moon to">
-			<img src="/images/img_moon.jpg" alt="moon"/>
+			<img src="\TweenMax\images\img_moon.jpg" alt="moon"/>
 		</article>
 
 		<hr/>
 
 		<h2>.from</h2>
 		<article class="moon from">
-			<img src="/images/img_moon.jpg" alt="moon"/>
+			<img src="\TweenMax\images\img_moon.jpg" alt="moon"/>
 		</article>
 
 		<hr/>
 
 		<h2>.fromTo</h2>
 		<article class="moon fromTo">
-			<img src="/images/img_moon.jpg" alt="moon"/>
+			<img src="\TweenMax\images\img_moon.jpg" alt="moon"/>
+		</article>
+		<article class="moon fromTo2">
+			<img src="\TweenMax\images\img_moon.jpg" alt="moon"/>
 		</article>
 	</section>
 	
 
 
-    <script src="/js/TweenMax.min.js"></script>
+    <script src="\TweenMax\js\TweenMax.min.js"></script>
     <script>
 		TweenMax.to(".to img", 2, {
 			left: "20%",
@@ -40,6 +43,15 @@
 		});
 		TweenMax.from(".from img", 6, {
 			left: "30%",
+			boxShadow:"20px 20px 10px rgba(0,0,0,0.4)"
+		});
+		TweenMax.fromTo([".fromTo img", ".fromTo2 img"], 10, { //여러 클래스에 확장시 ["선택자","선택자"]
+			//start
+			left: 0,
+			width: "100px"
+		}, 
+		{	//end
+			left: "50%",
 			boxShadow:"20px 20px 10px rgba(0,0,0,0.4)"
 		});
     </script>
