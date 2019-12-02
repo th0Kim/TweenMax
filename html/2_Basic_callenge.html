@@ -12,14 +12,26 @@
    <section class="pc">
 		<h2>.to</h2>
 		<article class="moon noneFlow">
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
 			<div class="box">
-				<button type="button" class="btn">클릭</button>
+				<div class="btn">
+					<button type="button">클릭</button>
+				</div>
 				<img src="\images\img_moon.jpg" alt="moon"/>
 			</div>
 		</article>
 		<article class="moon noneFlow">
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
 			<div class="box">
-				<button type="button" class="btn">클릭</button>
+				<div class="btn">
+					<button type="button">클릭</button>
+				</div>
 				<img src="\images\img_moon.jpg" alt="moon"/>
 			</div>
 		</article>
@@ -32,7 +44,9 @@
 			<span class="normalBox"></span>
 			<span class="normalBox"></span>
 			 <div class="box">
-				 <button type="button" class="btn">클릭</button>
+				 <div class="btn">
+					<button type="button">클릭</button>
+				 </div>
 				 <img src="\images\img_moon.jpg" alt="moon"/>
 			 </div>
 		 </article>
@@ -45,20 +59,16 @@
 
 		var app = app || {};
 
+		//PC TYPE
 		app.uptoArea = {
 			events: {
 				CLICK_BTN: 'click.btn'
 			},
 			init: function() {
-				this.pcType = '.pc';
-				this.mobType = '.mob';
-				this.noneFlow = '.noneFlow';
+				this.noneFlow = '.pc .noneFlow'; // pc한정
 				this.floWbox = '.box';
-				this.btn = '.btn';
+				this.btn = '.btn button';
 				this.activeClass = 'on';
-
-				this.$pcType = app.$body.find(this.pcType);
-				this.$mobType = app.$body.find(this.mobType);
 
 				this.$wrapper = app.$body.find(this.noneFlow);
 				this.$box = this.$wrapper.find(this.floWbox);
@@ -71,8 +81,8 @@
 
 				function btnClicked() {
 					var thisFlowBox = $(this).parents(_this.noneFlow).find(_this.floWbox);
-					var checkBoxSize = -thisFlowBox.height()-2; // 박스높이 = 숨겨지는 부분
-					var checkBtnSize = -$(this).height()-3; // 버튼 높아 = 보여지는 부분
+					var checkBoxSize = -thisFlowBox.height(); // 박스높이 = 숨겨지는 부분
+					var checkBtnSize = -$(this).height()-2; // 버튼 높아 = 보여지는 부분
 					thisFlowBox.toggleClass(_this.activeClass); // 클래스 달아주기
 
 					if( thisFlowBox.hasClass(_this.activeClass) ) {
@@ -91,9 +101,59 @@
 			}
 		}
 
+		//MOBILE TYPE
+		var checkBoxSize = $('.mob .noneFlow .box').height();
+		var checkBtnSize = $('.mob .noneFlow .btn').height();
+		TweenMax.to(".mob .noneFlow .box", 1, {
+			bottom: -checkBoxSize+checkBtnSize
+		});
+		app.uptoMob = {
+			events: {
+				CLICK_BTN: 'click.btn'
+			},
+			init: function() {
+				this.noneFlow = '.mob .noneFlow';
+				this.floWbox = '.box';
+				this.btn = '.btn button';
+				this.activeClass = 'on';
+
+				this.$wrapper = app.$body.find(this.noneFlow);
+				this.$box = this.$wrapper.find(this.floWbox);
+				this.$btn = this.$wrapper.find(this.btn);
+		
+				this.addEvents();
+			},
+			addEvents: function() {
+				var _this = this;
+
+				function btnClicked() {
+					var thisFlowBox = $(this).parents(_this.noneFlow).find(_this.floWbox);
+					var checkBoxSize = thisFlowBox.height(); // 박스높이 = 숨겨지는 부분
+					var checkBtnSize = $(this).height(); // 버튼 높아 = 보여지는 부분
+					thisFlowBox.toggleClass(_this.activeClass); // 클래스 달아주기
+
+					if( thisFlowBox.hasClass(_this.activeClass) ) {
+						TweenMax.to(thisFlowBox, 1, {
+							y:-checkBoxSize+checkBtnSize
+						});	
+						// console.log('올라감');
+					} else {
+						TweenMax.to(thisFlowBox, 1, {
+							y: -checkBtnSize,
+							bottom: -checkBoxSize
+						});
+						
+						// console.log('내려감');
+					}
+				}
+    		_this.$btn.off(_this.events.CLICK_BTN).on(_this.events.CLICK_BTN, btnClicked); // btnClicked(); 함수 호출
+			}
+		}
+
 		$(function(){
 			app.$body = $("body");
-			hasJqueryObject(app.$body.find(".noneFlow .btn")) && app.uptoArea.init();
+			hasJqueryObject(app.$body.find(".pc .noneFlow .btn")) && app.uptoArea.init();
+			hasJqueryObject(app.$body.find(".mob .noneFlow .btn")) && app.uptoMob.init();
 		})
 
 	</script>
