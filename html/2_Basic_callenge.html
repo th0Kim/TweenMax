@@ -5,28 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TWEENMAX - BASIC</title>
-    <link rel="stylesheet" href="\TweenMax\css\style.css">
+    <link rel="stylesheet" href="\css\style.css">
 </head>
 <body>
    <h1>응용1</h1>
-   <section>
+   <section class="pc">
 		<h2>.to</h2>
 		<article class="moon noneFlow">
 			<div class="box">
 				<button type="button" class="btn">클릭</button>
-				<img src="\TweenMax\images\img_moon.jpg" alt="moon"/>
+				<img src="\images\img_moon.jpg" alt="moon"/>
 			</div>
 		</article>
 		<article class="moon noneFlow">
 			<div class="box">
 				<button type="button" class="btn">클릭</button>
-				<img src="\TweenMax\images\img_moon.jpg" alt="moon"/>
+				<img src="\images\img_moon.jpg" alt="moon"/>
 			</div>
 		</article>
 	</section>
+	<section class="mob">
+		 <h2>.to</h2>
+		 <article class="moon noneFlow">
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			 <div class="box">
+				 <button type="button" class="btn">클릭</button>
+				 <img src="\images\img_moon.jpg" alt="moon"/>
+			 </div>
+		 </article>
+	 </section>
 	
-	<script src="\TweenMax\js\jquery-1.12.4.min.js"></script>
-	<script src="\TweenMax\js\TweenMax.min.js"></script>
+	<script src="\js\jquery-1.12.4.min.js"></script>
+	<script src="\js\TweenMax.min.js"></script>
 	<script>
 		function hasJqueryObject($elem) { return $elem.length > 0; }
 
@@ -37,10 +50,15 @@
 				CLICK_BTN: 'click.btn'
 			},
 			init: function() {
+				this.pcType = '.pc';
+				this.mobType = '.mob';
 				this.noneFlow = '.noneFlow';
 				this.floWbox = '.box';
 				this.btn = '.btn';
 				this.activeClass = 'on';
+
+				this.$pcType = app.$body.find(this.pcType);
+				this.$mobType = app.$body.find(this.mobType);
 
 				this.$wrapper = app.$body.find(this.noneFlow);
 				this.$box = this.$wrapper.find(this.floWbox);
@@ -54,7 +72,7 @@
 				function btnClicked() {
 					var thisFlowBox = $(this).parents(_this.noneFlow).find(_this.floWbox);
 					var checkBoxSize = -thisFlowBox.height()-2; // 박스높이 = 숨겨지는 부분
-					var checkBtnSize = -$(this).height()-6; // 버튼 높아 = 보여지는 부분
+					var checkBtnSize = -$(this).height()-3; // 버튼 높아 = 보여지는 부분
 					thisFlowBox.toggleClass(_this.activeClass); // 클래스 달아주기
 
 					if( thisFlowBox.hasClass(_this.activeClass) ) {
