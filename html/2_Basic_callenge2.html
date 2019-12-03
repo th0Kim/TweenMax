@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TWEENMAX - BASIC</title>
+    <link rel="stylesheet" href="\css\style.css">
+</head>
+<body>
+   <h1>응용2</h1>
+   <section class="slide pc">
+		<h2>.to</h2>
+		<article class="moon noneFlow">
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<div class="box">
+				<div class="btn">
+					<button type="button">클릭</button>
+				</div>
+				<img src="\images\img_moon.jpg" alt="moon"/>
+			</div>
+		</article>
+		<article class="moon noneFlow">
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<div class="box">
+				<div class="btn">
+					<button type="button">클릭</button>
+				</div>
+				<img src="\images\img_moon.jpg" alt="moon"/>
+			</div>
+		</article>
+	</section>
+	<section class="slide mob">
+		 <h2>.to</h2>
+		 <article class="moon noneFlow">
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			<span class="normalBox"></span>
+			 <div class="box">
+				 <div class="btn">
+					<button type="button">클릭</button>
+				 </div>
+				 <img src="\images\img_moon.jpg" alt="moon"/>
+			 </div>
+		 </article>
+	 </section>
+	
+	<script src="\js\jquery-1.12.4.min.js"></script>
+	<script src="\js\TweenMax.min.js"></script>
+	<script>
+		function hasJqueryObject($elem) { return $elem.length > 0; }
+
+		var app = app || {};
+
+		//PC TYPE
+		app.uptoArea = {
+			events: {
+				CLICK_BTN: 'click.btn'
+			},
+			init: function() {
+				this.noneFlow = '.noneFlow';
+				this.floWbox = '.box';
+				this.btn = '.btn button';
+				this.activeClass = 'on';
+
+				this.$wrapper = app.$body.find(this.noneFlow);
+				this.$box = this.$wrapper.find(this.floWbox);
+				this.$btn = this.$wrapper.find(this.btn);
+				
+				this.addEvents();
+				
+			},
+			addEvents: function() {
+				var _this = this;
+
+				if( this.$wrapper.parents().hasClass('pc') ) { // pc체크
+					//체크가 안됨 ㅠ_ㅠ.. 
+					_this.$btn.off(_this.events.CLICK_BTN).on(_this.events.CLICK_BTN, pcEvent);
+					console.log('1');
+				} else if (this.$wrapper.parents().hasClass('mob')) {
+					_this.$btn.off(_this.events.CLICK_BTN).on(_this.events.CLICK_BTN, mobEvent);
+					console.log('2');
+				}
+				function pcEvent() {
+					var thisFlowBox = $(this).parents(_this.noneFlow).find(_this.floWbox);
+					var checkBoxSize = -thisFlowBox.height(); // 박스높이 = 숨겨지는 부분
+					var checkBtnSize = -$(this).height()-2; // 버튼 높아 = 보여지는 부분
+					thisFlowBox.toggleClass(_this.activeClass); // 클래스 달아주기
+
+					if( thisFlowBox.hasClass(_this.activeClass) ) {
+						TweenMax.to(thisFlowBox, 2, {
+							y: checkBoxSize
+						});
+					} else {
+						TweenMax.to(thisFlowBox, 2, {
+							y: checkBtnSize
+						});
+					}
+				}
+				function mobEvent() {
+					var thisFlowBox = $(this).parents(_this.noneFlow).find(_this.floWbox);
+					var checkBoxSize = thisFlowBox.height(); // 박스높이 = 숨겨지는 부분
+					var checkBtnSize = $(this).height(); // 버튼 높아 = 보여지는 부분
+					thisFlowBox.toggleClass(_this.activeClass); // 클래스 달아주기
+
+					if( thisFlowBox.hasClass(_this.activeClass) ) {
+						TweenMax.to(thisFlowBox, 1, {
+							y:-checkBoxSize+checkBtnSize
+						});
+					} else {
+						TweenMax.to(thisFlowBox, 1, {
+							y: -checkBtnSize,
+							bottom: -checkBoxSize
+						});
+					}
+				}
+			}
+		}
+		//MOBILE TYPE
+		var checkBoxSize = $('.mob .noneFlow .box').height();
+		var checkBtnSize = $('.mob .noneFlow .btn').height();
+		TweenMax.to(".mob .noneFlow .box", 1, {
+			bottom: -checkBoxSize+checkBtnSize
+		});
+		
+		$(function(){
+			app.$body = $("body");
+			hasJqueryObject(app.$body.find(".noneFlow .btn")) && app.uptoArea.init();
+		})
+
+	</script>
+</body>
+</html>
